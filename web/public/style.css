@@ -1,0 +1,32 @@
+body {
+  font-family: sans-serif;
+  max-width: 132ch;
+  margin: auto;
+}
+header {
+  background: darkgreen;
+  padding: 5px;
+}
+nav li {
+  display: inline-block;
+  margin-right: 2em;
+}
+nav a {
+  color: currentColor;
+  text-decoration: none;
+}
+nav li:first-child {
+  font-size: 1.3rem;
+}
+h1 {
+  font-size: 1.4rem;
+}
+#newpostForm * {
+  display: block;
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    background: hsl(250deg, 25%, 10%);
+    color: white;
+  }
+}

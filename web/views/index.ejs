@@ -1,0 +1,6 @@
+<%- include("head") -%> <% for (post of posts) { %>
+<div>
+  <p><%= post.User.name %></p>
+  <p><%= post.text %></p>
+</div>
+<% } %> <%- include("foot") -%>
