@@ -6,12 +6,19 @@ body {
 header {
   background: darkgreen;
   padding: 5px;
+  color: white;
+  display: grid;
+  grid-template-columns: max-content 1fr max-content;
 }
-nav li {
+header ul,
+nav {
+  display: inline-block;
+}
+header li {
   display: inline-block;
   margin-right: 2em;
 }
-nav a {
+header a {
   color: currentColor;
   text-decoration: none;
 }
@@ -21,8 +28,16 @@ nav li:first-child {
 h1 {
   font-size: 1.4rem;
 }
-#newpostForm * {
+#newpostForm *,
+#loginForm *,
+#registerForm * {
   display: block;
+  margin-bottom: 10px;
+}
+#loginForm,
+#registerForm {
+  display: inline-block;
+  margin-right: 100px;
 }
 @media (prefers-color-scheme: dark) {
   body {

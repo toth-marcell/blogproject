@@ -5,4 +5,12 @@
       <li><a href="/newpost">New post</a></li>
     </ul>
   </nav>
+  <div></div>
+  <ul>
+    <% if (user) { %>
+    <li></li>
+    <% } else { %>
+    <li><a href="/login">Login</a></li>
+    <% } %>
+  </ul>
 </header>

@@ -1,0 +1,29 @@
+<% pageName = "Login or register" %> <%- include("head") -%> <% if (typeof msg
+!= "undefined") { %>
+<p id="msg"><%= msg %></p>
+<% } %>
+<form method="post" id="loginForm" action="/login">
+  <h1>Login</h1>
+  <label>
+    Username
+    <input name="name">
+  </label>
+  <label>
+    Password
+    <input name="pasword" type="password">
+  </label>
+  <button>Login</button>
+</form>
+<form method="post" id="registerForm" action="/register">
+  <h1>Register</h1>
+  <label>
+    Username
+    <input name="name">
+  </label>
+  <label>
+    Password
+    <input name="pasword" type="password">
+  </label>
+  <button>Register</button>
+</form>
+<%- include("foot") -%>
