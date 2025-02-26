@@ -95,6 +95,12 @@ app.get("/deletepost", async (req, res) => {
   res.redirect("/");
 });
 
+app.get("/profile", async (req, res) => {
+  const user = await User.findByPk(req.query.id);
+  if (user) res.render("profile", { profile: user });
+  else res.redirect("/");
+});
+
 if ((await User.findAll()).length == 0) {
   const name = "a";
   const pass = "a";

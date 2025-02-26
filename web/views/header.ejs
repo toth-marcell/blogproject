@@ -9,7 +9,9 @@
   <ul>
     <% if (user) { %>
     <li>
-      Logged in as <%= user.isAdmin ? `${user.name} (Admin)` : user.name %>
+      Logged in as
+      <a href="/profile?id=<%= user.id %>"><%= user.name %></a>
+      <% if (user.isAdmin) { %>(Admin)<% } %>
     </li>
     <li><a href="/logout">Logout</a></li>
     <% } else { %>

@@ -4,7 +4,9 @@
     <h2><%= post.title %></h2>
   </a>
   Submitted by
-  <span><%= post.User.name %></span>
+  <a href="/profile?id=<%= post.User.id %>"
+    ><span><%= post.User.name %></span></a
+  >
   at
   <span><%= post.createdAt.toISOString() %></span>
   <% if (user && (post.User.id == user.id || user.isAdmin)) { %>

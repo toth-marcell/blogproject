@@ -3,13 +3,17 @@ body {
   max-width: 132ch;
   margin: auto;
   padding-inline: 10px;
+  --accent-color: darkslateblue;
 }
 header {
-  background: darkgreen;
+  background: var(--accent-color);
+  margin: 10px;
   padding: 5px;
+  border-radius: 50px;
   color: white;
   display: grid;
   grid-template-columns: max-content 1fr max-content;
+  align-items: baseline;
 }
 header ul,
 nav {
@@ -21,7 +25,6 @@ header li {
 }
 header a {
   color: currentColor;
-  text-decoration: none;
 }
 nav li:first-child {
   font-size: 1.3rem;
@@ -45,6 +48,14 @@ a {
 }
 a:hover {
   text-decoration-thickness: 0.2rem;
+}
+button {
+  background: var(--accent-color);
+  color: currentColor;
+  border: none;
+  border-radius: 50px;
+  padding: 10px;
+  cursor: pointer;
 }
 @media (prefers-color-scheme: dark) {
   body {
