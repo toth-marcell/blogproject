@@ -45,7 +45,7 @@ app.post("/login", async (req, res) => {
   if (typeof result == "string") {
     APIError(req, res, result);
   } else {
-    res.json({ token: ObtainToken(result) });
+    res.json({ token: ObtainToken(result), id: result.id });
   }
 });
 
