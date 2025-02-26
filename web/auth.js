@@ -13,18 +13,18 @@ function comparePassword(userPassword, password) {
   return bcryptjs.compareSync(sha256d, userPassword);
 }
 
-export const Register = (name, password) => {
-  const existingUser = User.findOne({ where: { name: name } });
+export const Register = async (name, password) => {
+  const existingUser = await User.findOne({ where: { name: name } });
   if (existingUser) return `A user with name "${name}" already exists!`;
-  const newUser = User.create({
+  const newUser = await User.create({
     name: name,
     password: hashPassword(password),
   });
   return newUser;
 };
 
-export const Login = (name, password) => {
-  const existingUser = User.findOne({ where: { name: name } });
+export const Login = async (name, password) => {
+  const existingUser = await User.findOne({ where: { name: name } });
   if (!existingUser) return `No user with name "${name}" exists.`;
   if (!comparePassword(existingUser.password, password))
     return "Wrong password!";
@@ -35,6 +35,6 @@ export const ObtainToken = (user) => {
   return JWT.sign({ id: user.id }, process.env.SECRET, { expiresIn: "20y" });
 };
 
-export const ValidateToken = (token) => {
-  return User.findByPk(JWT.verify(token, process.env.SECRET).id);
+export const ValidateToken = async (token) => {
+  return await User.findByPk(JWT.verify(token, process.env.SECRET).id);
 };

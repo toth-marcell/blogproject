@@ -12,9 +12,18 @@ export const User = sequelize.define("User", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  isAdmin: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
+  },
 });
 
 export const Post = sequelize.define("Post", {
+  title: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   text: {
     type: DataTypes.STRING,
     allowNull: false,

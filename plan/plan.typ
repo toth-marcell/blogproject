@@ -44,11 +44,13 @@ There is a backend which exposes an HTTP API and connects to the database.
     [*User*],
     [id #pin("userId")],
     "name",
-    "password"
+    "password",
+    "admin?"
   ),
   table(
     [*Post*],
     "id",
+    "title",
     "text",
     [#pinit-arrow(0,"userId", start-dy: 5pt, end-dy: -3pt)#pin(0)UserId],
   ),

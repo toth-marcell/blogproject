@@ -1,6 +1,15 @@
 <%- include("head") -%> <% for (post of posts) { %>
 <div>
-  <p><%= post.User.name %></p>
+  <a href="/post?id=<%= post.id  %>">
+    <h2><%= post.title %></h2>
+  </a>
+  Submitted by
+  <span><%= post.User.name %></span>
+  at
+  <span><%= post.createdAt.toISOString() %></span>
+  <% if (user && (post.User.id == user.id || user.isAdmin)) { %>
+  <span><a href="/deletepost?id=<%= post.id %>">delete</a></span>
+  <% } %>
   <p><%= post.text %></p>
 </div>
 <% } %> <%- include("foot") -%>

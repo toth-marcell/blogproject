@@ -1,5 +1,4 @@
-<% pageName = "Login or register" %> <%- include("head") -%> <% if (typeof msg
-!= "undefined") { %>
+<%- include("head") -%> <% if (typeof msg != "undefined") { %>
 <p id="msg"><%= msg %></p>
 <% } %>
 <form method="post" id="loginForm" action="/login">
@@ -10,7 +9,7 @@
   </label>
   <label>
     Password
-    <input name="pasword" type="password">
+    <input name="password" type="password">
   </label>
   <button>Login</button>
 </form>
@@ -22,7 +21,7 @@
   </label>
   <label>
     Password
-    <input name="pasword" type="password">
+    <input name="password" type="password">
   </label>
   <button>Register</button>
 </form>

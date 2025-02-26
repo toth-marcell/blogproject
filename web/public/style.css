@@ -2,6 +2,7 @@ body {
   font-family: sans-serif;
   max-width: 132ch;
   margin: auto;
+  padding-inline: 10px;
 }
 header {
   background: darkgreen;
@@ -38,6 +39,12 @@ h1 {
 #registerForm {
   display: inline-block;
   margin-right: 100px;
+}
+a {
+  color: currentColor;
+}
+a:hover {
+  text-decoration-thickness: 0.2rem;
 }
 @media (prefers-color-scheme: dark) {
   body {

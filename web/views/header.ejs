@@ -8,7 +8,10 @@
   <div></div>
   <ul>
     <% if (user) { %>
-    <li></li>
+    <li>
+      Logged in as <%= user.isAdmin ? `${user.name} (Admin)` : user.name %>
+    </li>
+    <li><a href="/logout">Logout</a></li>
     <% } else { %>
     <li><a href="/login">Login</a></li>
     <% } %>
