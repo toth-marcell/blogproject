@@ -1,0 +1,11 @@
+#allUsersTable {
+  border-collapse: collapse;
+}
+#allUsersTable td,
+#allUsersTable th {
+  border: 2px solid currentColor;
+  padding: 5px;
+}
+form {
+  margin: 20px;
+}

@@ -12,7 +12,7 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.set("view engine", "ejs");
-app.locals.siteName = "A website";
+app.locals.siteName = "A blog website";
 
 app.use(async (req, res, next) => {
   try {
@@ -25,6 +25,11 @@ app.use(async (req, res, next) => {
   }
   next();
 });
+
+function adminOnly(req, res, next) {
+  if (res.locals.user && res.locals.user.isAdmin) next();
+  else res.redirect("/");
+}
 
 app.get("/", async (req, res) => {
   const posts = await Post.findAll({
@@ -102,6 +107,29 @@ app.get("/profile", async (req, res) => {
   const user = await User.findByPk(req.query.id);
   if (user) res.render("profile", { profile: user });
   else res.redirect("/");
+});
+
+app.get("/admin", adminOnly, async (req, res) => {
+  res.render("admin", { allUsers: await User.findAll() });
+});
+
+app.post("/makeadmin", adminOnly, async (req, res) => {
+  const newAdmin = await User.findOne({ where: { name: req.body.name } });
+  await newAdmin.update({ isAdmin: true });
+  res.redirect("/admin");
+});
+
+app.post("/rmadmin", adminOnly, async (req, res) => {
+  const newAdmin = await User.findOne({ where: { name: req.body.name } });
+  if (res.locals.user.id == newAdmin.id) {
+    res.render("admin", {
+      allUsers: await User.findAll(),
+      msg: "You can't remove admin status from yourself!",
+    });
+  } else {
+    await newAdmin.update({ isAdmin: false });
+    res.redirect("/admin");
+  }
 });
 
 if ((await User.findAll()).length == 0) {

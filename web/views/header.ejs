@@ -11,7 +11,9 @@
     <li>
       Logged in as
       <a href="/profile?id=<%= user.id %>"><%= user.name %></a>
-      <% if (user.isAdmin) { %>(Admin)<% } %>
+      <% if (user.isAdmin) { %>
+      <a href="/admin">(Admin)</a>
+      <% } %>
     </li>
     <li><a href="/logout">Logout</a></li>
     <% } else { %>

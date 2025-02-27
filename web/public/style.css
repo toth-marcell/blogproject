@@ -28,6 +28,7 @@ header a {
 }
 nav li:first-child {
   font-size: 1.3rem;
+  font-weight: bold;
 }
 h1 {
   font-size: 1.4rem;
@@ -56,10 +57,16 @@ button {
   border-radius: 50px;
   padding: 10px;
   cursor: pointer;
+  margin-block: 10px;
 }
 @media (prefers-color-scheme: dark) {
   body {
     background: hsl(250deg, 25%, 10%);
     color: white;
+  }
+}
+@media (max-width: 768px) {
+  header {
+    display: block;
   }
 }

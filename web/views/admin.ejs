@@ -1,0 +1,34 @@
+<%- include("head") -%>
+<link rel="stylesheet" href="/adminpage.css">
+<h1>Admin page</h1>
+<% if (typeof msg != "undefined") { %>
+<p id="msg"><%= msg %></p>
+<% } %>
+<form method="post">
+  <label>
+    Name
+    <input name="name">
+  </label>
+  <button formaction="/makeadmin">Make this user admin</button>
+  <button formaction="/rmadmin">Remove admin status from this user</button>
+</form>
+<table id="allUsersTable">
+  <thead>
+    <tr>
+      <th colspan="2">All users</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th>Admin?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for (u of allUsers) { %>
+    <tr>
+      <td><a href="/profile?id=<%= u.id %>"><%= u.name %></a></td>
+      <td><%= u.isAdmin %></td>
+    </tr>
+    <% } %>
+  </tbody>
+</table>
+<%- include("foot") -%>
