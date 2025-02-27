@@ -6,13 +6,18 @@
         xmlns:local="clr-namespace:project"
         mc:Ignorable="d"
         Title="New Post" Height="450" Width="800">
-    <Grid>
-        <StackPanel Margin="20">
-            <Label>Title</Label>
-            <TextBox FontSize="16"/>
-            <Label>Text</Label>
-            <TextBox AcceptsReturn="True" Height="200"/>
-            <Button Margin="100,20" Height="50">Submit</Button>
-        </StackPanel>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Label>Title</Label>
+        <TextBox FontSize="16" Grid.Row="1" x:Name="titleField"/>
+        <Label Grid.Row="2">Text</Label>
+        <TextBox AcceptsReturn="True" Grid.Row="3" x:Name="textField"/>
+        <Button Margin="100,25" Grid.Row="4" x:Name="submitButton" Click="submitButton_Click">Submit</Button>
     </Grid>
 </Window>
