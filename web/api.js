@@ -35,6 +35,7 @@ app.get("/posts", async (req, res) => {
       text: post.text,
       createdAt: post.createdAt,
       user: {
+        id: post.User.id,
         name: post.User.name,
         isAdmin: post.User.isAdmin,
       },
@@ -48,7 +49,11 @@ app.post("/login", async (req, res) => {
   if (typeof result == "string") {
     APIError(req, res, result);
   } else {
-    res.json({ token: ObtainToken(result), id: result.id });
+    res.json({
+      token: ObtainToken(result),
+      id: result.id,
+      isAdmin: result.isAdmin,
+    });
   }
 });
 
@@ -57,11 +62,15 @@ app.post("/register", async (req, res) => {
   if (typeof result == "string") {
     APIError(req, res, result);
   } else {
-    res.json({ token: ObtainToken(result), id: result.id });
+    res.json({
+      token: ObtainToken(result),
+      id: result.id,
+      isAdmin: result.isAdmin,
+    });
   }
 });
 
-app.post("/newpost", async (req, res) => {
+app.post("/post", async (req, res) => {
   if (!res.locals.user) APIError(req, res, "You must be logged in to do that!");
   else {
     await Post.create({
@@ -71,6 +80,14 @@ app.post("/newpost", async (req, res) => {
     });
     res.end();
   }
+});
+
+app.post("/deletepost", async (req, res) => {
+  const post = await Post.findByPk(req.query.id, { include: User });
+  if (post.User.id == res.locals.user.id || res.locals.user.isAdmin) {
+    await post.destroy();
+    res.end();
+  } else APIError(req, res, "You aren't allowed to do that!");
 });
 
 app.get("/profile", async (req, res) => {

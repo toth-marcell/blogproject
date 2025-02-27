@@ -27,7 +27,7 @@ namespace project
         private async void submitButton_Click(object sender, RoutedEventArgs e)
         {
             StringContent body = new StringContent(JsonConvert.SerializeObject(new NewPostBody(titleField.Text, textField.Text)), Encoding.UTF8, "application/json");
-            HttpResponseMessage result = await API.httpClient.PostAsync(API.APIURL + "/newpost", body);
+            HttpResponseMessage result = await API.httpClient.PostAsync(API.APIURL + "/post", body);
             var content = await result.Content.ReadAsStringAsync();
             try
             {

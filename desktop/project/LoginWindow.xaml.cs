@@ -42,6 +42,7 @@ namespace project
                 LoggedInUser.Id = loginResponse.Id;
                 LoggedInUser.Token = loginResponse.Token;
                 LoggedInUser.Name = nameField.Text;
+                LoggedInUser.IsAdmin = loginResponse.IsAdmin;
             }
             catch
             {
@@ -65,6 +66,7 @@ namespace project
     {
         public int Id { get; set; }
         public string Token { get; set; }
+        public bool IsAdmin { get; set; }
     }
     class APIError
     {

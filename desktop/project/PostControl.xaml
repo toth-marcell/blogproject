@@ -9,14 +9,17 @@
     <StackPanel Margin="35,10" Background="LightGray">
         <Label Content="{Binding Title}" FontSize="16" FontWeight="Bold" />
         <Label>
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="Submitted by {0} at {1}">
-                        <Binding Path="User.Name" />
-                        <Binding Path="CreatedAt" />
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock>
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="Submitted by {0} at {1}">
+                            <Binding Path="User.Name" />
+                            <Binding Path="CreatedAt" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <Button x:Name="deleteButton" Margin="10,0,0,0" Visibility="Hidden" Click="deleteButton_Click">Delete</Button>
+            </StackPanel>
         </Label>
         <Label Content="{Binding Text}"/>
     </StackPanel>

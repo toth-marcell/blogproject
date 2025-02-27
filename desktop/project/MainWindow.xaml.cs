@@ -35,7 +35,7 @@ namespace project
             PostsPanel.Children.Clear();
             foreach (Post post in posts)
             {
-                PostControl postControl = new PostControl { DataContext = post };
+                PostControl postControl = new PostControl(post, FetchPosts);
                 PostsPanel.Children.Add(postControl);
             }
         }
@@ -56,6 +56,7 @@ namespace project
         }
         void UpdateStatusBar()
         {
+            FetchPosts();
             if (LoggedInUser.Token == null)
             {
                 statusBar.Content = "Not logged in.";
