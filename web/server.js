@@ -60,7 +60,10 @@ app.get("/newpost", async (req, res) => {
 
 app.post("/newpost", async (req, res) => {
   if (!res.locals.user) res.redirect("/login");
-  else {
+  else if (req.body.title == "" || req.body.text == "") {
+    res.locals.pageName = "New post";
+    res.render("newpost", { msg: "You must fill out both fields!" });
+  } else {
     await Post.create({
       title: req.body.title,
       text: req.body.text,
