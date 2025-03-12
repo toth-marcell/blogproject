@@ -1,6 +1,6 @@
 import { Sequelize, DataTypes } from "sequelize";
 
-const sequelize = new Sequelize("sqlite:data/db.sqlite");
+const sequelize = new Sequelize("sqlite:data/db.sqlite", { logging: false });
 
 export const User = sequelize.define("User", {
   name: {
