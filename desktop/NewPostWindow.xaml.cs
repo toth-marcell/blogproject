@@ -33,13 +33,13 @@ namespace project
             {
                 result.EnsureSuccessStatusCode();
                 MessageBox.Show("Success!");
+                DialogResult = true;
             }
             catch
             {
                 var msg = JsonConvert.DeserializeObject<APIError>(content).msg;
                 MessageBox.Show(msg, "Fail :(");
             }
-            DialogResult = true;
         }
     }
     class NewPostBody

@@ -43,13 +43,13 @@ namespace project
                 LoggedInUser.Token = loginResponse.Token;
                 LoggedInUser.Name = nameField.Text;
                 LoggedInUser.IsAdmin = loginResponse.IsAdmin;
+                DialogResult = true;
             }
             catch
             {
                 var msg = JsonConvert.DeserializeObject<APIError>(content).msg;
                 MessageBox.Show(msg);
             }
-            DialogResult = true;
         }
     }
     class LoginBody
