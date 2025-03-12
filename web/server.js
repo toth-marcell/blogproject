@@ -62,7 +62,11 @@ app.post("/newpost", async (req, res) => {
   if (!res.locals.user) res.redirect("/login");
   else if (req.body.title == "" || req.body.text == "") {
     res.locals.pageName = "New post";
-    res.render("newpost", { msg: "You must fill out both fields!" });
+    res.render("newpost", {
+      title: req.body.title,
+      text: req.body.text,
+      msg: "You must fill out both the title and the text fields!",
+    });
   } else {
     await Post.create({
       title: req.body.title,
@@ -107,7 +111,7 @@ app.get("/deletepost", async (req, res) => {
 });
 
 app.get("/profile", async (req, res) => {
-  const user = await User.findByPk(req.query.id);
+  const user = await User.findByPk(req.query.id, { include: Post });
   if (user) res.render("profile", { profile: user });
   else res.redirect("/");
 });
@@ -118,26 +122,28 @@ app.get("/admin", adminOnly, async (req, res) => {
 
 app.post("/makeadmin", adminOnly, async (req, res) => {
   const newAdmin = await User.findOne({ where: { name: req.body.name } });
-  await newAdmin.update({ isAdmin: true });
+  if (newAdmin) await newAdmin.update({ isAdmin: true });
   res.redirect("/admin");
 });
 
 app.post("/rmadmin", adminOnly, async (req, res) => {
-  const newAdmin = await User.findOne({ where: { name: req.body.name } });
-  if (res.locals.user.id == newAdmin.id) {
-    res.render("admin", {
-      allUsers: await User.findAll(),
-      msg: "You can't remove admin status from yourself!",
-    });
-  } else {
-    await newAdmin.update({ isAdmin: false });
-    res.redirect("/admin");
+  const oldAdmin = await User.findOne({ where: { name: req.body.name } });
+  if (oldAdmin) {
+    if (res.locals.user.id == oldAdmin.id) {
+      res.render("admin", {
+        allUsers: await User.findAll(),
+        msg: "You can't remove admin status from yourself!",
+      });
+    } else {
+      await newAdmin.update({ isAdmin: false });
+    }
   }
+  res.redirect("/admin");
 });
 
 if ((await User.findAll()).length == 0) {
-  const name = "a";
-  const pass = "a";
+  const name = "admin";
+  const pass = "admin";
   const adminUser = await Register(name, pass);
   adminUser.update({ isAdmin: true });
   console.log(

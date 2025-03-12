@@ -5,11 +5,13 @@
   <h1>Submit new post</h1>
   <label>
     Title
-    <input name="title">
+    <input name="title" value="<%= typeof title == 'undefined' ? '' : title %>">
   </label>
   <label>
     Text
-    <textarea name="text" cols="80" rows="20"></textarea>
+    <textarea name="text" cols="80" rows="20">
+<%= typeof text == 'undefined' ? '' : text %></textarea
+    >
   </label>
   <button>Submit</button>
 </form>

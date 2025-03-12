@@ -1,4 +1,10 @@
 <%- include("head") -%>
 <h1><%= profile.name %></h1>
 <p>Account created <%= profile.createdAt.toISOString()%></p>
+<h2>Posts</h2>
+<ul>
+  <% for (post of profile.Posts) { %>
+  <li><a href="/post?id=<%= post.id %>"><%= post.title %></a></li>
+  <% } %>
+</ul>
 <%- include("foot") -%>

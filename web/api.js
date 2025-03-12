@@ -72,7 +72,9 @@ app.post("/register", async (req, res) => {
 
 app.post("/post", async (req, res) => {
   if (!res.locals.user) APIError(req, res, "You must be logged in to do that!");
-  else {
+  else if (req.body.title == "" || req.body.text == "") {
+    APIError(req, res, "You must fill out both the title and the text fields!");
+  } else {
     await Post.create({
       title: req.body.title,
       text: req.body.text,
