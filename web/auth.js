@@ -14,6 +14,8 @@ function comparePassword(userPassword, password) {
 }
 
 export const Register = async (name, password) => {
+  if (name == "" || password == "")
+    return "You can't have an empty name or password!";
   const existingUser = await User.findOne({ where: { name: name } });
   if (existingUser) return `A user with name "${name}" already exists!`;
   const newUser = await User.create({
@@ -24,6 +26,8 @@ export const Register = async (name, password) => {
 };
 
 export const Login = async (name, password) => {
+  if (name == "" || password == "")
+    return "You can't have an empty name or password!";
   const existingUser = await User.findOne({ where: { name: name } });
   if (!existingUser) return `No user with name "${name}" exists.`;
   if (!comparePassword(existingUser.password, password))
