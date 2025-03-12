@@ -24,7 +24,7 @@ Each post can also be viewed separately by clicking on its title, and the author
 
 Creating a post requires the user to log in first, since each post has an author. Other functions (like reading posts) can be done without an account.
 = Web and desktop
-Both the website and the desktop program have the same features.
+The desktop program has only basic features (view and create posts), while the website features the admin page, the ability to view a user's profile and more.
 There is a backend which exposes an HTTP API and connects to the database.
 = UI design
 #image("ui.svg")
@@ -66,6 +66,7 @@ There is a backend which exposes an HTTP API and connects to the database.
   "/newpost", "form to create new post",
   "/post?id=", "view a specific post",
   "/user?id=", "view information about specific user",
+  "/admin", "admin page (only for admin users)",
 )
 = API routes
 #table(
