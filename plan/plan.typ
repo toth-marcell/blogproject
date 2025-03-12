@@ -16,6 +16,7 @@
 
   #author
 ]
+Git repository of project: https://github.com/toth-marcell/blogproject
 = Function
 Users can register or log in and publish posts.
 The website's frontpage shows all posts.
